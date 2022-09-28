@@ -1,15 +1,11 @@
 package com.idat.SeptiembreIIIE.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.idat.SeptiembreIIIE.model.Producto;
 
-public interface ProductoRepository {
+public interface ProductoRepository extends JpaRepository<Producto, Integer>{
 
-	void guardar(Producto producto);
-	void actualizar(Producto producto);
-	void eliminar(Integer id);
-	List<Producto> listar();
-	Producto obtener(Integer id);
+	
 	
 }
