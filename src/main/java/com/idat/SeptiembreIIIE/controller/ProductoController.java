@@ -21,7 +21,7 @@ public class ProductoController {
 	@Autowired
 	private ProductoService service;
 	
-	//sdadsa
+	//hola
 	
 	@RequestMapping(path = "/listar", method = RequestMethod.GET)
 	public ResponseEntity<List<Producto>> listar(){
