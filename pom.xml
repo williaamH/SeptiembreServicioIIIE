@@ -9,7 +9,7 @@
 		<version>2.6.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>pe.idat</groupId>
+	<groupId>com.idat</groupId>
 	<artifactId>SeptiembreIIIE</artifactId>
 	<version>1.0.0</version>
 	<name>SeptiembreIIIE</name>
