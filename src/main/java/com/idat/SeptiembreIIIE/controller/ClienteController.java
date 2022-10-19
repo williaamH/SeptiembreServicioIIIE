@@ -1,4 +1,5 @@
 package com.idat.SeptiembreIIIE.controller;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,56 +11,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.idat.SeptiembreIIIE.model.Producto;
-import com.idat.SeptiembreIIIE.service.ProductoService;
+import com.idat.SeptiembreIIIE.model.Cliente;
+import com.idat.SeptiembreIIIE.service.ClienteService;
 
 @RestController
-@RequestMapping("/producto/v1")
-public class ProductoController {
-
+@RequestMapping("/cliente/v1")
+public class ClienteController {
+	
 	@Autowired
-	private ProductoService service;
+	private ClienteService service;
 	
 	@RequestMapping(path = "/listar", method = RequestMethod.GET)
-	public ResponseEntity<List<Producto>> getProducto(){
-		return new ResponseEntity<List<Producto>>(service.lista(), HttpStatus.OK);
+	public ResponseEntity<List<Cliente>> getCliente(){
+		return new ResponseEntity<List<Cliente>>(service.lista(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(path = "/guardar", method = RequestMethod.POST)
-	public ResponseEntity<Void> insertarProducto(@RequestBody Producto producto) {
-		service.guardar(producto);
+	public ResponseEntity<Void> insertarCliente(@RequestBody Cliente cliente) {
+		service.guardar(cliente);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(path = "/listar/{codigo}", method = RequestMethod.GET)
-	public ResponseEntity<Producto> obtenerPorId(@PathVariable int codigo) {
-		Producto producto = service.obtener(codigo);
-		if(producto == null) {			
-			return new ResponseEntity<Producto>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<Cliente> obtenerPorId(@PathVariable int codigo) {
+		Cliente cliente = service.obtener(codigo);
+		if(cliente == null) {			
+			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
+		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 	}
 	
 	@RequestMapping(path = "/editar", method = RequestMethod.PUT)
-	public ResponseEntity<Void> editar(@RequestBody Producto producto) 
+	public ResponseEntity<Void> editar(@RequestBody Cliente cliente) 
 	{
-		Producto foundProducto = service.obtener(producto.getIdProducto());
-		if(foundProducto == null) {
+		Cliente foundCliente = service.obtener(cliente.getIdCliente());
+		if(foundCliente == null) {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
-		service.actualizar(producto);
+		service.actualizar(cliente);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 	@RequestMapping(path = "/eliminar/{codigo}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> eliminar(@PathVariable int codigo) 
 	{
-		Producto foundProducto = service.obtener(codigo);
-		if(foundProducto == null) {
+		Cliente foundCliente = service.obtener(codigo);
+		if(foundCliente == null) {
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
 		service.eliminar(codigo);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-	
 }
